@@ -10,9 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_25_033829) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_25_115911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coourse_announcements", force: :cascade do |t|
+    t.bigint "coourse_id", null: false
+    t.string "title", null: false
+    t.text "content"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.bigint "creator_id", null: false
+    t.bigint "updater_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coourse_id"], name: "index_coourse_announcements_on_coourse_id"
+    t.index ["creator_id"], name: "index_coourse_announcements_on_creator_id"
+    t.index ["updater_id"], name: "index_coourse_announcements_on_updater_id"
+  end
+
+  create_table "coourses", force: :cascade do |t|
+    t.bigint "instance_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.integer "status", default: 0, null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.bigint "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_coourses_on_creator_id"
+    t.index ["instance_id"], name: "index_coourses_on_instance_id"
+  end
+
+  create_table "instance_announcements", force: :cascade do |t|
+    t.bigint "instance_id", null: false
+    t.string "title", null: false
+    t.text "content"
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.bigint "creator_id", null: false
+    t.bigint "updater_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_instance_announcements_on_creator_id"
+    t.index ["instance_id"], name: "index_instance_announcements_on_instance_id"
+    t.index ["updater_id"], name: "index_instance_announcements_on_updater_id"
+  end
 
   create_table "instance_users", force: :cascade do |t|
     t.bigint "instance_id", null: false
@@ -46,4 +90,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_25_033829) do
     t.string "name", null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "web_sites", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "coourse_announcements", "users", column: "creator_id", name: "fk_coourse_announcements_creator_id"
+  add_foreign_key "coourse_announcements", "users", column: "updater_id", name: "fk_coourse_announcements_updater_id"
+  add_foreign_key "coourses", "users", column: "creator_id", name: "fk_courses_creator_id"
+  add_foreign_key "instance_announcements", "users", column: "creator_id", name: "fk_instance_announcements_creator_id"
+  add_foreign_key "instance_announcements", "users", column: "updater_id", name: "fk_instance_announcements_updater_id"
 end

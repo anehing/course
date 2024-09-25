@@ -4,14 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+rubyonrails:
   id: 1
-  host: "local-one-.lvh.me"
+  name: Ruby on Rails
+  url: http://www.rubyonrails.org
 
-# column: value
-#
-two:
+google:
   id: 2
-  host: "local-two-.lvh.me"
-
-# column: value
+  name: Google
+  url: http://www.google.com

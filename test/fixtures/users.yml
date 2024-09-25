@@ -5,11 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   name: "user-one"
 
 # column: value
 #
 two:
+  id: 2
   name: "user-two"
 
 

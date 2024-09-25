@@ -1,0 +1,2 @@
+class WebSite < ApplicationRecord
+end

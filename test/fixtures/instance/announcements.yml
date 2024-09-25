@@ -6,13 +6,22 @@
 #
 one:
   id: 1
-  user_id: 1
+  title: 'InstanceAnnouncement one'
+  content:  'instance content one'
+  start_at: <%= Time.zone.now %>
+  end_at:   <%= 3.days.from_now %>
+  creator_id: 1
+  updater_id: 1
   instance_id: 1
-
 # column: value
 #
 two:
   id: 2
-  user_id: 2
-  instance_id: 1
+  title: 'InstanceAnnouncement two'
+  content:  'instance content two'
+  start_at: <%= Time.zone.now %>
+  end_at:   <%= 3.days.from_now %>
+  creator_id: 2
+  updater_id: 2
+  instance_id: 2
 # column: value

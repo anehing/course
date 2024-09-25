@@ -1,0 +1,14 @@
+inherit_from:
+  - ../../.rubocop.yml
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/SymbolProc: # Because this is a DSL.
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
