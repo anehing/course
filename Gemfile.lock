@@ -71,6 +71,8 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
+    acts_as_tenant (1.0.1)
+      rails (>= 6.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
@@ -139,6 +141,9 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    minitest-rails (7.1.1)
+      minitest (~> 5.20)
+      railties (>= 7.1.0, < 8.0.0)
     msgpack (1.7.2)
     net-imap (0.4.16)
       date
@@ -284,6 +289,9 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     useragent (0.16.10)
+    validates_hostname (1.0.13)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -309,6 +317,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_tenant
   bootsnap
   brakeman
   capybara
@@ -317,6 +326,7 @@ DEPENDENCIES
   devise-multi_email
   importmap-rails
   jbuilder
+  minitest-rails
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.1)
@@ -328,6 +338,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  validates_hostname
   web-console
 
 BUNDLED WITH

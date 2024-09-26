@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_25_115911) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_26_084155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "subdomain"
+    t.string "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "coourse_announcements", force: :cascade do |t|
     t.bigint "coourse_id", null: false
@@ -72,7 +80,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_25_115911) do
     t.string "host", null: false, comment: "Stores the host name of the instance. The www prefix is automatically handled by the application"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
     t.index ["host"], name: "index_instances_on_host", unique: true
+    t.index ["name"], name: "index_instances_on_name", unique: true
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_projects_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,4 +121,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_25_115911) do
   add_foreign_key "coourses", "users", column: "creator_id", name: "fk_courses_creator_id"
   add_foreign_key "instance_announcements", "users", column: "creator_id", name: "fk_instance_announcements_creator_id"
   add_foreign_key "instance_announcements", "users", column: "updater_id", name: "fk_instance_announcements_updater_id"
+  add_foreign_key "projects", "accounts"
 end

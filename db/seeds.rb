@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Instance.find_or_initialize_by(id: Instance::DEFAULT_INSTANCE_ID, name: 'Default', host: '*').
+  save!(validate: false)
