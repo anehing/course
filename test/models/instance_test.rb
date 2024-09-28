@@ -40,8 +40,24 @@ class InstanceTest < ActiveSupport::TestCase
     assert names.each_cons(2).all? { |a, b| a <= b }
   end
 
-  test "#containing_user" do
-    assert true
+  describe "#containing_user" do
+    let(:instances) {  Instance.all[-4..-1] }
+    let(:instances_with_user) { instances[0..2] }
+    let(:user) { User.first }
+    before do
+      instances_with_user.each do |instance|
+        ActsAsTenant.with_tenant(instance) do
+          InstanceUser.create(instance: instance, user: user)
+        end
+      end
+    end
+    it "returns the correct set of instances" do
+      ActsAsTenant.without_tenant do
+        instances_with_user.each do |instance|
+          assert_includes Instance.containing_user(user), instance
+        end
+      end
+    end
   end
 
   describe ".find_tenant_by_host" do
@@ -59,6 +75,10 @@ class InstanceTest < ActiveSupport::TestCase
 
   test ".find_tenant_by_host_or_default# defaults to the default host if the host is not found " do
     assert_equal Instance.find_tenant_by_host_or_default("some-website.com"), Instance.default
+  end
+  test "" do
+    ActsAsTenant.with_tenant(:instance) do
+    end
   end
 
 end

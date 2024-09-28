@@ -4,5 +4,6 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../coursemology2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../coursemology2/authentication/singular-keycloak-database-federation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../coursemology2/client/vendor/recorderjs" vcs="Git" />
   </component>
 </project>

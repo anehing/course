@@ -15,6 +15,10 @@ class Instance < ApplicationRecord
 
   scope :order_by_name, ->(direction = :asc) { order(name: direction) }
   scope :order_for_display, -> { order(Arel.sql("CASE \"id\" WHEN #{DEFAULT_INSTANCE_ID} THEN 0 ELSE 1 END")).order_by_name }
+  # @!method containing_user
+  #   Selects all the instance with user as one of its members
+  #   Note: Must be used with ActsAsTenant#without_tenant block.
+  scope :containing_user, ->(user) { joins(:instance_users).where("instance_users.user_id = ?", user.id) }
 
   DEFAULT_INSTANCE_ID = 0
   class << self
@@ -42,8 +46,9 @@ class Instance < ApplicationRecord
     def find_tenant_by_host_or_default(host)
       find_tenant_by_host(host) || default
     end
-  end
 
+
+  end
 
   private
   def should_validate_host?

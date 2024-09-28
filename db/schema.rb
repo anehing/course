@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_084155) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_28_131358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_084155) do
     t.index ["coourse_id"], name: "index_coourse_announcements_on_coourse_id"
     t.index ["creator_id"], name: "index_coourse_announcements_on_creator_id"
     t.index ["updater_id"], name: "index_coourse_announcements_on_updater_id"
+  end
+
+  create_table "coourse_users", force: :cascade do |t|
+    t.bigint "coourse_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "role", default: 0, null: false
+    t.string "name", null: false
+    t.boolean "phantom", default: false, null: false
+    t.datetime "last_active_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coourse_id", "user_id"], name: "index_coourse_users_on_coourse_id_and_user_id", unique: true
+    t.index ["coourse_id"], name: "index_coourse_users_on_coourse_id"
+    t.index ["user_id"], name: "index_coourse_users_on_user_id"
   end
 
   create_table "coourses", force: :cascade do |t|

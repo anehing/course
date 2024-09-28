@@ -4,26 +4,24 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-
-default:
-  id: 0
-  host: "www.example.com"
-  name:  "Default"
 one:
   id: 1
-  host: "local-one-.lvh.me"
-  name: "local-one name"
-
+  user_id: 1
+  coourse_id: 1
+  name: 'coourse_user one '
+  datetime: <%= Time.zone.now %>
 # column: value
 #
 two:
   id: 2
-  host: "local-two-.lvh.me"
-  name: "local-two name"
+  user_id: 2
+  coourse_id: 2
+  name: 'coourse_user two '
+  datetime: <%= Time.zone.now %>
 # column: value
-<% 10.times do |n| %>
-instance_<%= n %>:
-  id: <%= n+3 %>
-  host: <%= "local-#{n}-.lvh.me" %>
-  name: <%= "local-#{n} name" %>
-<% end %>
+three:
+  id: 3
+  user_id: 3
+  coourse_id: 3
+  name: 'coourse_user two '
+  datetime: <%= Time.zone.now %>
